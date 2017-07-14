@@ -42,10 +42,10 @@ WinHex打开某bmp文件：
 
 ![](Res/WinHex打开bmp.png)
 
-bfType: 0x4d42 对应字符"BM"
-bfSize: 0x0004a436 = 297K字节，即文件总大小
-bfReserved1, bfReserved2: 保留字节，均为0
-bfOffBits: 0x00000036 = 54字节(即为sizeof(BITMAPINFOHEADER) + sizeof(BITMAPINFOHEADER)，说明这个图片没有调色板信息)
+bfType: 0x4d42 对应字符"BM"<br>
+bfSize: 0x0004a436 = 297K字节，即文件总大小<br>
+bfReserved1, bfReserved2: 保留字节，均为0<br>
+bfOffBits: 0x00000036 = 54字节(即为sizeof(BITMAPINFOHEADER) + sizeof(BITMAPINFOHEADER)，说明这个图片没有调色板信息)<br>
 ### 2. 位图信息段
 ```
 typedef struct tagBITMAPINFOHEADER{
@@ -78,17 +78,17 @@ typedef struct tagBITMAPINFOHEADER{
 
 ![](Res/WinHex打开bmp2.png)
 
-biSize: BITMAPINFOHEADER结构的字节数0x00000028 = 40字节
-biWidth: 0x00000160 = 352像素
-biHeight: 0x00000120 = 288像素
-biPlanes: 0x0001 = 1
-biBitCount: 0x0018 = 24
-biCompression: 没有压缩
-biSizeImage: 0x0004a400 = 304128
-biXPelsPerMeter: 0x00000000
-biYPelsPerMeter: 0x00000000
-biClrUsed: 0x00000000
-biClrImportant: 0x00000000
+biSize: BITMAPINFOHEADER结构的字节数0x00000028 = 40字节<br>
+biWidth: 0x00000160 = 352像素<br>
+biHeight: 0x00000120 = 288像素<br>
+biPlanes: 0x0001 = 1<br>
+biBitCount: 0x0018 = 24<br>
+biCompression: 没有压缩<br>
+biSizeImage: 0x0004a400 = 304128<br>
+biXPelsPerMeter: 0x00000000<br>
+biYPelsPerMeter: 0x00000000<br>
+biClrUsed: 0x00000000<br>
+biClrImportant: 0x00000000<br>
 
 **这里的biWidth必须是4的倍数，如果不是4的倍数，则需要取4的倍数，比如241，则取244。
 为什么必须是4的倍数？这里涉及到一个行对齐的问题：
