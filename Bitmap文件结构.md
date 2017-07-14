@@ -111,3 +111,5 @@ biBitCount和压缩方式与取色方式的关系：
 ### 4. 位图数据
 即根据biBitCount与压缩方式对应的取色方式，依次保存每个像素点的颜色信息。
 **注意：若位图信息头中的图像高度是正数，那么位图数据在文件中的排列顺序是从左上角到右下角，以行为主序进行排列**
+
+来源：[http://blog.csdn.net/lanbing510/article/details/8176231](http://blog.csdn.net/lanbing510/article/details/8176231)
