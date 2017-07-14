@@ -1,1 +1,1 @@
-#This is a resource fold for readme.md.
+#This is a resource fold.
