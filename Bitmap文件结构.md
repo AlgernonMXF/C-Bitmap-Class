@@ -15,7 +15,7 @@ typedef struct BITMAP_FILE
 	BITMAPFILEHEADER	fileHeader;		//文件头
 	BITMAPINFOHEADER	InfoHeader;		//信息段
 	PALETTEENTRY 		*palette;		//调色板信息
-	BYTE				*buffer;		//图片信息，BYTE为1个字节
+	BYTE			*buffer;		//图片信息，BYTE为1个字节
 } BITMAP_FILE;
 ```
 ## 各部分内容
@@ -68,7 +68,7 @@ typedef struct tagBITMAPINFOHEADER{
 | biHeight | 图像高度，单位为像素 *\*高度可以也可以为负数。如果为一个正数，则说明图像是倒向的；如果为一个负数，则说明图像是正向的。大多数BMP文件均为倒向的。* |
 | biPlanes | bmp图片的平面属，显然显示器只有一个平面，所以恒等于1 *\*不理解* |
 | biBitCount | 说明表示每像素颜色所用的位数(bit)，其值为1,4,8,16,24,32。 |
-| biCompression | 说明图像数据压缩的类型，其中：<br>BI_RGB: 没有压缩<br>BI_RLE8: 每个像素8bit的RLE压缩编码，压缩格式由2字节组成(重复像素计数和颜色索引)<br>BI_RLE4: 每个像素4bit的RLE压缩编码，压缩格式由2字节组成<br>BI_BITFIELDS: 每个像素的bit由指定的掩码决定<br>BI_JPEG: JPEG格式|
+| biCompression | 说明图像数据压缩的类型，其中：<br>0 - BI_RGB: 没有压缩<br>1 - BI_RLE8: 每个像素8bit的RLE压缩编码，压缩格式由2字节组成(重复像素计数和颜色索引)<br>2 - BI_RLE4: 每个像素4bit的RLE压缩编码，压缩格式由2字节组成<br>3 - BI_BITFIELDS: 每个像素的bit由指定的掩码决定<br>BI_JPEG: JPEG格式|
 | biSizeImage | 说明图像大小，以字节为单位。当用BI_RGB格式时，可设置为0。 |
 | biXPelsPerMeter | 说明水平分辨率，单位像素/米*\*不理解* |
 | biYPelsPerMeter | 说明垂直分辨率，单位像素/米*\*不理解* |
