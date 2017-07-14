@@ -38,8 +38,7 @@ typedef struct BITMAPFILEHEADER {
 | bfReserved2 | 保留，必须设置为0 |
 | bfOffBits | 说明从文件头开始到实际的图象数据之间的字节的偏移量。即文件总大小bfSize - sizeof(BITMAPINFOHEADER) - sizeof(BITMAPINFOHEADER) - 调色板大小 |
 
-WinHex打开某bmp文件：
-
+WinHex打开某bmp文件：<br>
 ![](Res/WinHex打开bmp.png)
 
 bfType: 0x4d42 对应字符"BM"<br>
@@ -90,8 +89,25 @@ biYPelsPerMeter: 0x00000000<br>
 biClrUsed: 0x00000000<br>
 biClrImportant: 0x00000000<br>
 
-**这里的biWidth必须是4的倍数，如果不是4的倍数，则需要取4的倍数，比如241，则取244。
+**注意：这里的biWidth必须是4的倍数**，如果不是4的倍数，则需要取4的倍数，比如241，则取244。
 为什么必须是4的倍数？这里涉及到一个行对齐的问题：
-由于Windows在进行行扫描的时候最小的单位为4个字节，所以当
-图片宽 X 每个像素的字节数 != 4的整数倍
-时要在每行的后面补上缺少的字节，以0填充**
+由于Windows在进行行扫描的时候最小的单位为4个字节，所以当图片宽 X 每个像素的字节数 != 4的整数倍时要在每行的后面补上缺少的字节，以0填充
+
+### 3. 调色板
+当图片中所用的颜色数较少时，可以使用调色板来完成，大大降低所需的存储空间。<br>
+调色板上单个颜色的定义：
+```
+typedef struct PALETTEENTRY {
+	BYTE R;
+	BYTE G;
+	BYTE B;
+	BYTE Flags;		//保留位
+}
+```
+例如，某bmp图片中共16种颜色，则可以使用16个调色板项，在第四部分位图数据部分中，每个像素点使用4bit表示颜色，4bit即表示0-15的值，即调色板中颜色的索引。
+biBitCount和压缩方式与取色方式的关系：
+![](/Res/颜色位数特点.png)
+
+### 4. 位图数据
+即根据biBitCount与压缩方式对应的取色方式，依次保存每个像素点的颜色信息。
+**注意：若位图信息头中的图像高度是正数，那么位图数据在文件中的排列顺序是从左上角到右下角，以行为主序进行排列**
